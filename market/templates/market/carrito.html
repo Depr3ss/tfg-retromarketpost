@@ -1,0 +1,60 @@
+{% extends 'market/base.html' %}
+
+{% block title %}Mi carrito{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2 class="mb-4 text-center">🛒 Mi Carrito</h2>
+
+  {% if error %}
+    <div class="alert alert-danger text-center">{{ error }}</div>
+  {% endif %}
+
+  {% if carrito.items.all %}
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle text-center">
+        <thead class="table-dark">
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in carrito.items.all %}
+          <tr>
+            <td>{{ item.producto.nombre }}</td>
+            <td>{{ item.producto.precio|floatformat:2 }} €</td>
+            <td>{{ item.cantidad }}</td>
+            <td>{{ item.total|floatformat:2 }} €</td>
+            <td>
+              <form method="post" action="{% url 'eliminar_item_carrito' item.id %}">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-danger">Eliminar</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="text-end mt-3">
+      <h4><strong>Total: {{ total|floatformat:2 }} €</strong></h4>
+    </div>
+
+    <div class="text-end mt-2">
+      <form method="post" action="{% url 'vaciar_carrito' %}" class="d-inline">
+        {% csrf_token %}
+        <button class="btn btn-outline-danger">Vaciar carrito</button>
+      </form>
+      <a href="{% url 'checkout' %}" class="btn btn-primary">Proceder al pago</a>
+    </div>
+
+  {% else %}
+    <div class="alert alert-warning text-center">Tu carrito está vacío.</div>
+  {% endif %}
+</div>
+{% endblock %}

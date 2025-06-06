@@ -1,0 +1,224 @@
+body {
+  background-color: #0d0d0d;
+  color: #39ff14;
+  font-family: 'Courier New', monospace;
+}
+
+h1, h2 {
+  font-family: 'Press Start 2P', cursive;
+  color: #fffb00;
+  text-shadow: 2px 2px #8000ff;
+}
+
+
+.navbar {
+  background-color: #1a001a !important;
+}
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: #fffb00 !important;
+}
+
+
+footer {
+  background-color: #111;
+  color: #39ff14;
+  border-top: 2px solid #8000ff;
+}
+footer a {
+  color: #fffb00;
+}
+footer a:hover {
+  color: #8000ff;
+}
+footer .text-muted {
+  color: #fffb00 !important; 
+}
+
+
+.btn-primary,
+.btn-outline-primary {
+  background-color: #8000ff;
+  border: none;
+  color: white;
+}
+
+.btn-outline-danger {
+  border-color: #fffb00;
+  color: #fffb00;
+}
+
+.btn-outline-danger:hover {
+  background-color: #fffb00;
+  color: #000;
+}
+
+.card {
+  background-color: #1c1c1c;
+  color: #39ff14;
+  border: 2px solid #8000ff;
+  box-shadow: 0 0 8px #fffb00;
+}
+.card-title {
+  font-family: 'Press Start 2P', cursive;
+  color: #fffb00;
+}
+.card-footer strong {
+  color: #fffb00;
+}
+
+
+.pagination .page-link {
+  background-color: #111;
+  border: 1px solid #8000ff;
+  color: #fffb00;
+}
+.pagination .active .page-link {
+  background-color: #8000ff;
+  color: #fff;
+  border: none;
+}
+
+
+input,
+.form-control {
+  background-color: #222;
+  color: #39ff14;
+  border: 1px solid #fffb00;
+}
+.form-control::placeholder {
+  color: #999;
+}
+
+
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 10px;
+  background: #1c1c1c;
+  box-shadow: 0 4px 15px #8000ff;
+  color: #39ff14;
+  border: 2px solid #8000ff;
+}
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #fffb00;
+}
+.login-container label {
+  font-weight: 600;
+  color: #fffb00;
+}
+.login-container input {
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #fffb00;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: #222;
+  color: #39ff14;
+}
+.login-container button {
+  padding: 12px;
+  background-color: #8000ff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+}
+.login-container button:hover {
+  background-color: #6a1b9a;
+}
+.login-container a {
+  color: #fffb00;
+}
+.login-container a:hover {
+  color: #8000ff;
+}
+
+
+.retro-text-bar {
+  position: absolute;
+  top: 70%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 6rem;
+  letter-spacing: 8px;
+  color: #fffb00;
+  opacity: 0.15;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+.retro-text-bar.left {
+  left: -80px;
+}
+.retro-text-bar.right {
+  right: -80px;
+}
+
+main, .container, .flex-grow-1 {
+  position: relative;
+  z-index: 2;
+}
+
+
+.card-img-top {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-bottom: 2px solid #8000ff;
+}
+
+.text-muted {
+  color: #fffb00 !important; 
+}
+
+.checkout-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #1c1c1c;
+  border: 2px solid #8000ff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #fffb00;
+}
+
+.checkout-form label {
+  color: #fffb00;
+  font-weight: bold;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.checkout-form input {
+  background-color: #222;
+  color: #39ff14;
+  border: 1px solid #fffb00;
+  border-radius: 6px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.checkout-form input::placeholder {
+  color: #888;
+}
+
+.checkout-form button {
+  background-color: #8000ff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.checkout-form button:hover {
+  background-color: #6a1b9a;
+}

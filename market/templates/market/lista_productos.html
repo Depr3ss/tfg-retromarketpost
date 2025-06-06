@@ -1,0 +1,31 @@
+{% extends 'market/base.html' %}
+{% block title %}Mis Productos - RetroMarket{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Mis Productos</h2>
+
+<a href="{% url 'crear_producto' %}" class="btn btn-primary mb-4">+ Añadir nuevo producto</a>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  {% for producto in productos %}
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        {% if producto.imagen %}
+          <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ producto.nombre }}</h5>
+          <p class="card-text">{{ producto.descripcion|truncatechars:100 }}</p>
+          <p class="fw-bold">{{ producto.precio }} €</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <a href="{% url 'editar_producto' producto.pk %}" class="btn btn-sm btn-outline-secondary">Editar</a>
+          <a href="{% url 'eliminar_producto' producto.pk %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>No has añadido ningún producto aún.</p>
+  {% endfor %}
+</div>
+{% endblock %}

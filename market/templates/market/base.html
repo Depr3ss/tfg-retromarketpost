@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}RetroMarket{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link id="theme-stylesheet" rel="stylesheet" href="{% static 'market/css/retro_light.css' %}">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+  <div class="retro-text-bar left">RETRO</div>
+  <div class="retro-text-bar right">MARKET</div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <a class="navbar-brand" href="{% url 'catalogo_publico' %}">RetroMarket</a>
+
+      <div class="text-center">
+        <span id="darkToggle" class="fs-4 text-white" style="cursor:pointer;">🌙</span>
+      </div>
+
+      <div>
+        <ul class="navbar-nav">
+          {% if user.is_authenticated %}
+            <li class="nav-item me-3 position-relative">
+              <a class="nav-link" href="{% url 'ver_carrito' %}">
+                <i class="bi bi-cart-fill"></i> Carrito
+                {% if carrito_count > 0 %}
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ carrito_count }}
+                  </span>
+                {% endif %}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'lista_productos' %}">Mi panel</a>
+            </li>
+            <li class="nav-item">
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="btn btn-link nav-link" type="submit">Cerrar sesión</button>
+              </form>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-grow-1">
+    <div class="container mt-4">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <footer class="bg-dark text-white text-center py-4 mt-5">
+    <div class="container">
+      <p class="mb-2">© 2025 RetroMarket</p>
+      <div class="mb-2">
+        <a href="#" class="text-white mx-2"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-white mx-2"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" class="text-white mx-2"><i class="bi bi-facebook"></i></a>
+      </div>
+      <small class="text-muted">Síguenos en redes sociales para más contenido retro</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const toggle = document.getElementById('darkToggle');
+    const stylesheet = document.getElementById('theme-stylesheet');
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const mode = localStorage.getItem('modo');
+      if (mode === 'oscuro') {
+        stylesheet.setAttribute('href', "{% static 'market/css/retro_dark.css' %}");
+        toggle.textContent = '☀️';
+      } else {
+        stylesheet.setAttribute('href', "{% static 'market/css/retro_light.css' %}");
+        toggle.textContent = '🌙';
+      }
+    });
+
+    toggle.addEventListener('click', function () {
+      const isDark = stylesheet.getAttribute('href').includes('retro_dark.css');
+      if (isDark) {
+        stylesheet.setAttribute('href', "{% static 'market/css/retro_light.css' %}");
+        toggle.textContent = '🌙';
+        localStorage.setItem('modo', 'claro');
+      } else {
+        stylesheet.setAttribute('href', "{% static 'market/css/retro_dark.css' %}");
+        toggle.textContent = '☀️';
+        localStorage.setItem('modo', 'oscuro');
+      }
+    });
+  </script>
+</body>
+</html>

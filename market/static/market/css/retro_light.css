@@ -1,0 +1,163 @@
+/* ---------- GENERAL ---------- */
+body {
+  background-color: #fefefe;
+  color: #222;
+  font-family: 'Courier New', monospace;
+}
+
+h1, h2 {
+  font-family: 'Press Start 2P', cursive;
+  color: #ff3c38;
+  text-shadow: 1px 1px #ffd23f;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  background-color: #ffffff !important;
+}
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: #00bfb3 !important;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background-color: #f0f0f0;
+  color: #ff3c38;
+}
+footer a {
+  color: #00bfb3;
+}
+footer a:hover {
+  color: #ff3c38;
+}
+footer .text-muted {
+  color: #ff3c38 !important;
+}
+
+/* ---------- BOTONES ---------- */
+.btn-primary,
+.btn-outline-primary {
+  background-color: #00bfb3;
+  border: none;
+  color: white;
+}
+.btn-outline-danger {
+  border-color: #ff3c38;
+  color: #ff3c38;
+}
+.btn-outline-danger:hover {
+  background-color: #ff3c38;
+  color: #fff;
+}
+
+/* ---------- TARJETAS ---------- */
+.card {
+  background-color: #fdfdfd;
+  color: #222;
+  border: 2px solid #00bfb3;
+  box-shadow: 0 0 8px #ffd23f;
+}
+.card-footer strong {
+  color: #ff3c38;
+}
+.card-title {
+  font-family: 'Press Start 2P', cursive;
+  color: #00bfb3;
+}
+
+/* ---------- PAGINACIÓN ---------- */
+.pagination .page-link {
+  background-color: #fff;
+  border: 1px solid #00bfb3;
+  color: #00bfb3;
+}
+.pagination .active .page-link {
+  background-color: #00bfb3;
+  color: #fff;
+  border: none;
+}
+
+/* ---------- FORMULARIOS ---------- */
+input,
+.form-control {
+  background-color: #fff;
+  color: #222;
+  border: 1px solid #ff3c38;
+}
+.form-control::placeholder {
+  color: #aaa;
+}
+
+/* ---------- DECORACIÓN LATERAL RETRO ---------- */
+.retro-wrapper {
+  position: relative;
+}
+.retro-text-bar {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 6rem;
+  letter-spacing: 8px;
+  color: #00bfb3;
+  opacity: 0.15;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+.retro-text-bar.left {
+  left: -80px;
+}
+.retro-text-bar.right {
+  right: -80px;
+}
+
+/* ---------- LOGIN ---------- */
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  color: #222;
+  border: 2px solid #00bfb3;
+}
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #ff3c38;
+}
+.login-container label {
+  font-weight: 600;
+  color: #00bfb3;
+}
+.login-container input {
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ff3c38;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #222;
+}
+.login-container button {
+  padding: 12px;
+  background-color: #00bfb3;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+}
+.login-container button:hover {
+  background-color: #ff3c38;
+}
+.login-container a {
+  color: #ff3c38;
+}
+.login-container a:hover {
+  color: #00bfb3;
+}

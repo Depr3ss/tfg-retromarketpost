@@ -1,0 +1,11 @@
+{% extends 'market/base.html' %}
+
+{% block title %}Compra realizada{% endblock %}
+
+{% block content %}
+  <div class="text-center mt-5">
+    <h2>¡Gracias por tu compra!</h2>
+    <p>Tu pedido <strong>#{{ pedido.id }}</strong> ha sido procesado correctamente.</p>
+    <a href="{% url 'catalogo_publico' %}" class="btn btn-primary mt-3">Volver al catálogo</a>
+  </div>
+{% endblock %}

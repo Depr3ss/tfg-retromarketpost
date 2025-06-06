@@ -1,0 +1,41 @@
+{% extends 'market/base.html' %}
+{% block title %}Finalizar compra{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">🛍️ Finalizar compra</h2>
+
+  <form method="post" class="checkout-form">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre completo</label>
+      <input type="text" class="form-control" name="nombre" placeholder="Ej: Mario Bros" required>
+    </div>
+    <div class="mb-3">
+      <label for="direccion" class="form-label">Dirección</label>
+      <input type="text" class="form-control" name="direccion" placeholder="Ej: Calle 123, Reino Champiñón" required>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Correo electrónico</label>
+      <input type="email" class="form-control" name="email" placeholder="Ej: mario@nintendo.com" required>
+    </div>
+
+    <h5 class="mt-4 text-warning">Resumen del pedido:</h5>
+    <ul class="list-group mb-3">
+      {% for item in carrito.items.all %}
+        <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center border-warning">
+          {{ item.producto.nombre }} x{{ item.cantidad }}
+          <span>{{ item.producto.precio|floatformat:2 }} €</span>
+        </li>
+      {% endfor %}
+      <li class="list-group-item bg-dark text-light text-end border-warning">
+        <strong>Total: {{ total }} €</strong>
+      </li>
+    </ul>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary mt-3">Confirmar pedido</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
