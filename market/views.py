@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Producto, Carrito, CarritoItem, Pedido, LineaPedido, Categoria
-from .forms import ProductoForm
+from .forms import ProductoForm, CategoriaForm
 from django.views.generic import ListView
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from .forms import RegistroUsuarioForm, ProductoForm
 from django.db.models import Q
@@ -242,3 +241,41 @@ def checkout_exito(request, pedido_id):
     """
     pedido = get_object_or_404(Pedido, id=pedido_id, usuario=request.user)
     return render(request, 'market/checkout_exito.html', {'pedido': pedido})
+
+@login_required
+def gestionar_categorias(request):
+    """
+    Solo el usuario con email andresitomilea@gmail.com puede gestionar categorías (crear y eliminar).
+    """
+    if request.user.email.lower() != 'andresitomilea@gmail.com':
+        messages.error(request, "No tienes permiso para gestionar categorías.")
+        return redirect('catalogo_publico')
+
+    if request.method == 'POST':
+        form = CategoriaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Categoría añadida correctamente.")
+            return redirect('gestionar_categorias')
+    else:
+        form = CategoriaForm()
+
+    categorias = Categoria.objects.all()
+    return render(request, 'market/gestionar_categorias.html', {
+        'form': form,
+        'categorias': categorias
+    })
+
+@login_required
+def eliminar_categoria(request, categoria_id):
+    """
+    Elimina una categoría. Solo accesible por andresitomilea@gmail.com.
+    """
+    if request.user.email.lower() != 'andresitomilea@gmail.com':
+        messages.error(request, "No tienes permiso para eliminar categorías.")
+        return redirect('catalogo_publico')
+
+    categoria = get_object_or_404(Categoria, id=categoria_id)
+    categoria.delete()
+    messages.success(request, f"Categoría '{categoria.nombre}' eliminada.")
+    return redirect('gestionar_categorias')

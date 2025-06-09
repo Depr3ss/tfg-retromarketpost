@@ -1,5 +1,5 @@
 from django import forms
-from .models import Producto
+from .models import Producto, Categoria
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -33,3 +33,11 @@ class RegistroUsuarioForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("Este correo ya está registrado.")
         return email
+    
+class CategoriaForm(forms.ModelForm):
+    class Meta:
+        model = Categoria
+        fields = ['nombre']
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'})
+        }
